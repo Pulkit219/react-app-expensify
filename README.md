@@ -1,5 +1,4 @@
-# React_App-Expense Calc
-All react projects from beginner to advance goes here!!
+# react-App-Expense Calc
 
 <li>
  Need to install presets first REACT and env
@@ -18,6 +17,7 @@ All react projects from beginner to advance goes here!!
 </li>
    
 
+
     
 
 <li>
@@ -27,6 +27,9 @@ All react projects from beginner to advance goes here!!
     Enable/disble button with iternary operator < button onClick={onMakeDecision} disabled={app.options.length>0?false:true}>WHat should I do</ button > 
 ```
 </li>
+
+
+
 
 
 <li>
@@ -78,6 +81,9 @@ COMPONENT PROPS is just similar to  class="" id=""
 </li>
 
 
+
+
+
 <li>
 HOW TO bind THIS to correct context using contructor
 
@@ -87,6 +93,10 @@ HOW TO bind THIS to correct context using contructor
     }
 ```
 </li>
+
+
+
+
 
 <li>
         HOW to change state and re-render component
@@ -134,6 +144,10 @@ class Options extends React.Component{
 ```
 </li>
 
+
+
+
+
 <li>
 Use of stateless Functional Component, NO STATE HANDLING, JUST SIMPLE PRESENTATION
 ```const User=(props)=>{
@@ -148,6 +162,9 @@ Use of stateless Functional Component, NO STATE HANDLING, JUST SIMPLE PRESENTATI
 </li>
 
 
+
+
+
 <li>
  HOW TO PASS DEFAULT PROPS ? if no props passed it will use default one
 ```
@@ -156,6 +173,8 @@ Header.defaultProps={
     };
 ```
 </li>
+
+
 
 
 <li>
@@ -168,6 +187,7 @@ How to implicilty return in One Line, We use ({})
     }
 ```
 </li>
+
 
 
 
@@ -208,8 +228,11 @@ LIFECYCLE METHODS
 ```
 </li>
 
-<li>
 
+
+
+
+<li>
 CONFIGURE WEBPACK
 
 ```A FILE webpack.config.js must be created in root folder
@@ -228,9 +251,12 @@ module.exports={
 ```
 </li>
 
+
+
+
 <li>
 REDUX SET UP
-       ```npm install redux react-redux
+```npm install redux react-redux
         create a store so that it can be accesible by any component, that's the sole purpose
         cons store =createStore((state={initState},action)=>{
             switch(action.type){
@@ -243,16 +269,83 @@ REDUX SET UP
                    count:count-1
                 };
                 }
-        });
-        
-        ```
+        }); or || export default ()=>{
+    const store = createStore(
+        combineReducers({
+          expenses: expensesReducer,
+          filters:filtersReducer
+    
+        })
+    );
+    return store;
+}```
 </li>
 
+
+
+
+
 <li>
-DISPATCH ACTIONS TO STORE IN ORDER TO MAKE CHANGES TO STORE
-```store.dispatch({
-    type:'INCREMENT_EXAMPLE
-})
+ACTIONS PASSED TO REDUCERS AND THEN STATE IS SAVED TO STORE ABOVE
+```const expensesReducerDefaultState =[];
+
+export default (state =expensesReducerDefaultState ,action)=>{
+  switch (action.type){
+      case 'ADD_EXPENSE':
+      return[
+          ...state,action.expense
+      ];
+      case 'REMOVE_EXPENSE':
+      return state.filter(({id})=> id!== action.id);
+
+      case 'EDIT_EXPENSE':
+      return state.map((expense)=>{
+          if(expense.id === action.id)
+          {
+              return {
+                  ...expense,
+                  ...action.updates
+              };
+          }
+          else
+          {
+              return expense;
+          }
+      })
+      default:
+      return state;
+  }
+};```
+</li>
+
+
+
+<li>
+DISPATCH ACTIONS TO REDUCERS/STORE IN ORDER TO MAKE CHANGES TO STORE
+//ADD EXPENSE
+export const addExpense=({
+    description='',
+    note='',
+    amount=0,
+    createdAt=0
+}={})=>({
+    type:'ADD_EXPENSE',
+    expense:{
+      id:uuid(),
+      description,
+      note,
+      amount,
+      createdAt
+    }
+})```
+</li>
+
+
+
+
+<li>
+HOW TO DISPATCH AN ACTION
+```store.dispatch(addExpense({description:'water bill'}));
 ```
 </li>
 
