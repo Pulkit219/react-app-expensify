@@ -322,7 +322,7 @@ export default (state =expensesReducerDefaultState ,action)=>{
 
 <li>
 DISPATCH ACTIONS TO REDUCERS/STORE IN ORDER TO MAKE CHANGES TO STORE
-//ADD EXPENSE
+```//ADD EXPENSE
 export const addExpense=({
     description='',
     note='',
@@ -345,15 +345,38 @@ export const addExpense=({
 
 <li>
 HOW TO DISPATCH AN ACTION
-```store.dispatch(addExpense({description:'water bill'}));
-```
+```store.dispatch(addExpense({description:'water bill'}));```
+
 </li>
 
 
 
 <li>
-HOW TO SUBSCRIBE TO STORE'S STATE
-```
-```
+HOW TO PROVIDE STORE TO ALL REACT COMPONENTS || SHOULD BE DONE IN MAIN APP.JS
+```<Provider store={store}> 
+      rest of components
+   </Provider>```
 </li>
 
+
+
+<li>
+HOW TO GET STATE IN A REACT COMPONENT
+```import { connect } from 'react-redux';
+
+
+const ExpenseList = (props) => (
+  <div>
+    <h1>{props.expenses.length}</h1>
+    
+  </div>
+);
+
+const mapStateToProps = (state) => {
+  return {
+    expenses: state.expenses
+  };
+};
+
+export default connect(mapStateToProps)(ExpenseList);```
+</li>
