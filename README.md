@@ -84,24 +84,25 @@ COMPONENT PROPS is just similar to  class="" id=""
 
 
 
-<li>
-HOW TO bind THIS to correct context using contructor
 
-``` constructor(props){
+_**HOW TO bind THIS to correct context using contructor**_
+
+``` 
+constructor(props){
         super(props);
         this.removeAll=this.removeAll.bind(this);
     }
 ```
-</li>
 
 
 
 
 
-<li>
-        HOW to change state and re-render component
 
-```firstly a state is defined in conctructor in the app component
+_**HOW to change state and re-render component**_
+
+```
+firstly a state is defined in conctructor in the app component
         constructor(props){
                 super(props);
                 this.state={
@@ -142,15 +143,17 @@ class Options extends React.Component{
     }
 }
 ```
-</li>
 
 
 
 
 
-<li>
-Use of stateless Functional Component, NO STATE HANDLING, JUST SIMPLE PRESENTATION
-```const User=(props)=>{
+
+
+_**Use of stateless Functional Component, NO STATE HANDLING, JUST SIMPLE PRESENTATION**_
+
+```
+const User=(props)=>{
     return(
         <div>
           <p>Name:{props.name}</p>
@@ -159,26 +162,26 @@ Use of stateless Functional Component, NO STATE HANDLING, JUST SIMPLE PRESENTATI
     )
 }
 ```
-</li>
 
 
 
 
 
-<li>
- HOW TO PASS DEFAULT PROPS ? if no props passed it will use default one
+
+
+_**HOW TO PASS DEFAULT PROPS ? if no props passed it will use default one**_
 ```
 Header.defaultProps={
     title:'Decision'
     };
 ```
-</li>
 
 
 
 
-<li>
-How to implicilty return in One Line, We use ({})
+
+
+_**How to implicilty return in One Line, We use ({})**_
 
  
 ``` handleDeleteOptions(){
@@ -186,13 +189,13 @@ How to implicilty return in One Line, We use ({})
         ({}));
     }
 ```
-</li>
 
 
 
 
-<li>
-LIFECYCLE METHODS
+
+
+_**LIFECYCLE METHODS**_
 
 ```componentDidMount(){
         console.log("fetching data");
@@ -226,14 +229,14 @@ LIFECYCLE METHODS
      fired when re-directed to other component
     }
 ```
-</li>
 
 
 
 
 
-<li>
-CONFIGURE WEBPACK
+
+
+_**CONFIGURE WEBPACK**_
 
 ```A FILE webpack.config.js must be created in root folder
 inside webpack.config.js
@@ -249,13 +252,13 @@ module.exports={
 }
 
 ```
-</li>
 
 
 
 
-<li>
-REDUX SET UP
+
+
+_**REDUX STORE SET UP IN STORE.JS**_
 ```npm install redux react-redux
         create a store so that it can be accesible by any component, that's the sole purpose
         cons store =createStore((state={initState},action)=>{
@@ -278,15 +281,16 @@ REDUX SET UP
         })
     );
     return store;
-}```
-</li>
+}
+```
 
 
 
 
 
-<li>
-ACTIONS PASSED TO REDUCERS AND THEN STATE IS SAVED TO STORE ABOVE
+
+
+_**ACTIONS PASSED TO REDUCERS AND THEN STATE IS SAVED TO STORE ABOVE**_
 ```const expensesReducerDefaultState =[];
 
 export default (state =expensesReducerDefaultState ,action)=>{
@@ -315,14 +319,16 @@ export default (state =expensesReducerDefaultState ,action)=>{
       default:
       return state;
   }
-};```
-</li>
+};
+```
 
 
 
-<li>
-DISPATCH ACTIONS TO REDUCERS/STORE IN ORDER TO MAKE CHANGES TO STORE
-```//ADD EXPENSE
+
+
+_**DISPATCH ACTIONS TO REDUCERS/STORE IN ORDER TO MAKE CHANGES TO STORE ABOVE**_
+```
+//ADD EXPENSE
 export const addExpense=({
     description='',
     note='',
@@ -337,39 +343,44 @@ export const addExpense=({
       amount,
       createdAt
     }
-})```
-</li>
+})
+
+```
 
 
 
 
-<li>
-HOW TO DISPATCH AN ACTION
-```store.dispatch(addExpense({description:'water bill'}));```
 
-</li>
+_**HOW TO DISPATCH AN ACTION**_
+```
+store.dispatch(addExpense({description:'water bill'}));
+
+```
 
 
 
-<li>
-HOW TO PROVIDE STORE TO ALL REACT COMPONENTS || SHOULD BE DONE IN MAIN APP.JS
-```<Provider store={store}> 
+
+
+_**HOW TO PROVIDE STORE TO ALL REACT COMPONENTS || BETTER BE DONE IN MAIN APP.JS**_
+```
+<Provider store={store}> 
       rest of components
-   </Provider>```
-</li>
+   </Provider>
+
+```
 
 
 
-<li>
-HOW TO GET STATE IN A REACT COMPONENT
-```import { connect } from 'react-redux';
+
+_**HOW TO GET STATE IN A REACT COMPONENT**_
+```
+import { connect } from 'react-redux';
 
 
 const ExpenseList = (props) => (
-  <div>
-    <h1>{props.expenses.length}</h1>
+  
+    {props.expenses.length}
     
-  </div>
 );
 
 const mapStateToProps = (state) => {
@@ -378,5 +389,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(ExpenseList);```
-</li>
+export default connect(mapStateToProps)(ExpenseList);
+
+```
